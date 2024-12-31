@@ -9,7 +9,7 @@ function Home() {
 
   const handleTaskFetch = useCallback(async () => {
     try {
-      const fetchAllTask = await axios.get(`http://localhost:3001/api/tasks`);
+      const fetchAllTask = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/tasks`);
       if (fetchAllTask.data) {
         console.log(fetchAllTask.data);
         setTodos(fetchAllTask.data);
@@ -30,7 +30,7 @@ function Home() {
 
   const handleSave = (id) => {
     axios
-      .put(`http://localhost:3001/api/tasks/${id}`, { task: editedTask })
+      .put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/tasks/${id}`, { task: editedTask })
       .then(() => {
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
@@ -44,7 +44,7 @@ function Home() {
 
   const deleteTask = (id) => {
     axios
-      .delete(`http://localhost:3001/api/tasks/${id}`)
+      .delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/tasks/${id}`)
       .then(() => {
         setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
       })
@@ -53,7 +53,7 @@ function Home() {
 
   const handleCheckboxChange = (id, completed) => {
     axios
-      .put(`http://localhost:3001/api/tasks/${id}`, { completed: !completed })
+      .put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/tasks/${id}`, { completed: !completed })
       .then(() => {
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
@@ -145,7 +145,7 @@ const CheckBox = ({
         return;
       }
       const fetchCheckValueUpdate = await axios.put(
-        `http://localhost:3001/api/tasks/completionOfTask/${todoId}`,
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/tasks/completionOfTask/${todoId}`,
         {
           isCompleted: checkValue
         }

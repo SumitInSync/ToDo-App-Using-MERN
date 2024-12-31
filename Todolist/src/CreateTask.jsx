@@ -8,7 +8,7 @@ function CreateTask({ fetchTasks,handleTaskFetch }) {
     if (!task) return; // Prevent adding empty tasks
 
     axios
-      .post("http://localhost:3001/api/add", { task })
+      .post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/add`, {task })
       .then((res) => {
         console.log("Task added:", res);
         fetchTasks(); // Refresh task list after adding
