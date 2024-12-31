@@ -13,7 +13,14 @@ dotenv.config({
 const app = express();
 
 // Middleware
-app.use(cors());
+
+
+app.use(cors({
+  origin: process.env.REACT_APP_API_URL, // Allow requests only from the frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+  credentials: true // Enable if your frontend needs to send cookies or authentication headers
+}));
+
 app.use(express.json());  // Middleware to parse JSON bodies
 
 
