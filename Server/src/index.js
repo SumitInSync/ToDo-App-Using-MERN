@@ -16,7 +16,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: process.env.REACT_APP_API_URL, // Allow requests only from the frontend URL
+  origin: 'https://todofrontendsumit.netlify.app/', // Allow requests only from the frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
   credentials: true // Enable if your frontend needs to send cookies or authentication headers
 }));
